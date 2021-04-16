@@ -1,0 +1,78 @@
+﻿@model IEnumerable<FamilySite.DATA.EF.Course>
+
+@{
+    ViewBag.Title = "Courses";
+}
+<div id="family-wrapper">
+<h3>@ViewBag.Title</h3>
+
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        @Html.ActionLink("Add New Course", "Create", "Courses")
+    </p>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            @if (User.IsInRole("Admin"))
+            {
+                <th></th>
+            }
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.CourseName, "Details", new { id = item.CourseID })
+                    @*@Html.DisplayFor(modelItem => item.CourseName)*@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsActive)
+                </td>
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.CourseID }) |
+                        @*@Html.ActionLink("Details", "Details", new { id = item.CourseID }) |*@
+
+                        @if (item.CourseCompletions.Count == 0 && item.Lessons.Count == 0)
+                        {
+                            @Html.ActionLink("Delete", "Delete", new { id = item.CourseID })
+                        }
+                        else
+                        {
+                            <span class="myWarning">IN USE</span>
+                        }
+                    </td>
+                }
+
+            </tr>
+        }
+    </tbody>
+</table>
+</div>
+@*@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('.table').DataTable();
+        });
+    </script>
+}*@

@@ -1,0 +1,62 @@
+﻿@model FamilySite.DATA.EF.UserDetail
+
+@{
+    ViewBag.Title = "Edit: " + Model.FirstName ;
+}
+<div id="family-wrapper">
+    <h3>@ViewBag.Title</h3>
+
+<div id="CourseDetailsContainer">
+    @using (Html.BeginForm("Edit", "UserDetails", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.UserID)
+        @Html.HiddenFor(model => model.AvatarImage)
+        Session["currentImage"] = Model.AvatarImage;
+        <div class="form-horizontal">
+            <hr />
+           
+            <div class="form-group">
+                <div>
+                    <img style="width:30%;display:block;margin-left:auto;margin-right:auto;" src="~/Content/images/Users/@Model.AvatarImage" alt="@Model.FirstName" />
+                </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Profile Image", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-9">
+                        <input type="file" name="AvatarImage" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+            <div class="clearfix"></div>
+                <div id="tdFooter">
+                   
+                        <input type="submit" value="Save" class="btn btn-primary" />| 
+                    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger" })
+                 
+                </div>           
+    }
+
+</div>
+</div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

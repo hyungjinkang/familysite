@@ -1,0 +1,54 @@
+﻿
+@model FamilySite.UI.MVC.Models.ContactViewModel
+@{
+    ViewBag.Title = "Get In Touch";
+}
+<div id="family-wrapper">
+    <h3>@ViewBag.Title</h3>
+    <div class="status alert alert-success" style="display: none"></div>
+    <div id="contact">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div id="CourseDetailsContainer">
+                <div class="form-group col-md-12" style="margin-top:1em;">
+                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Name" })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group col-md-12">
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "Email" })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group col-md-12">
+                    @Html.TextBoxFor(model => model.Subject, new { @class = "form-control", @placeholder = "Subject" })
+                    @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group col-md-12" style="width:100%">
+                    @Html.TextAreaFor(model => model.Message, new { @class = "form-control", @placeholder = "Message", @id = "message", @row = 8 })
+                    @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                </div>
+                <div class="clearfix"></div>
+                <div id="tdFooterRight">
+
+                    <input type="submit"
+                           value="Send Message"
+                           name="submit"
+                           class="btn btn-primary pull-right" />
+                </div>
+                <div class="clearfix"></div>
+
+            </div>
+
+        }
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Content/js/formvalidation.js"></script>
+}

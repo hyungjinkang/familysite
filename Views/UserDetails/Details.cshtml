@@ -1,0 +1,38 @@
+﻿@model FamilySite.DATA.EF.UserDetail
+
+@{
+    ViewBag.Title = Model.FullName + " Details";
+}
+
+<div id="family-wrapper">
+
+    <h2>@ViewBag.Title</h2>
+    <div id="CourseDetailsContainer">
+        <div id="tdHeader">
+            <h3>@Html.DisplayFor(model => model.FullName )</h3>
+       </div> <!--header-->
+
+        <div >
+            <p>
+                <img style="display:block;margin-left:auto;margin-right:auto; width:50%" src="~/Content/images/Users/@Model.AvatarImage" alt="@Model.FirstName" />
+            </p>
+
+
+            <p style="text-align:center;">
+                @Html.LabelFor(model => model.AspNetUser.Email)
+                @Html.DisplayFor(model => model.AspNetUser.Email)
+            </p>
+
+        </div>
+
+
+    <div class="clearfix"></div>
+
+    <div id="tdFooterLeft">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.UserID }, new { @class = "btn btn-primary" })
+        </div>
+    <div id="tdFooterRight">
+         @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-danger" })
+    </div>
+</div>
+</div>

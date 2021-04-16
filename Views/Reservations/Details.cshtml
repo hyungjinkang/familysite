@@ -1,0 +1,55 @@
+﻿@model FamilySite.DATA.EF.Reservation
+
+@{
+    ViewBag.Title = "Reservation Details on " + Model.ReservationDate.ToShortDateString();
+}
+<div id="family-wrapper">
+    <h3>@ViewBag.Title</h3>
+
+    <div id="CourseDetailsContainer">
+
+    <div class="centerBlock-detail">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ReservationDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ReservationDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.UserDetail.FirstName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.UserDetail.FirstName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Lesson.LessonTitle)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Lesson.LessonTitle)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Lesson.Cours.CourseName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Lesson.Cours.CourseName)
+
+            </dd>
+
+        </dl>
+    </div>
+        <div class="clearfix"></div>
+        <hr/>
+        <div id="tdFooter">
+            <div>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.ReservationID }, new { @class = "btn btn-primary" })|
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-danger" })
+            </div>
+        </div>
+    </div>
+</div>

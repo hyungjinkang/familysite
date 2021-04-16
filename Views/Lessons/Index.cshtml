@@ -1,0 +1,124 @@
+﻿@model IEnumerable<FamilySite.DATA.EF.Lesson>
+
+@{
+    ViewBag.Title = "Lessons";
+}
+<div id="family-wrapper">
+    <h3>@ViewBag.Title</h3>
+
+    @if (User.IsInRole("Admin"))
+    {
+        <p>
+            @Html.ActionLink("Add New Lesson", "Create")
+        </p>
+    }
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cours.CourseName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LessonTitle)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Introduction)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.VideoURL)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PdfFileName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsActive)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ReservationLimit)
+                </th>
+                @if (User.Identity.IsAuthenticated)
+            {
+                    <th> Reservation</th>
+                }
+
+                @if (User.IsInRole("Admin"))
+            {
+                    <th></th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cours.CourseName)
+                    </td>
+                    <td>
+                        @Html.ActionLink(item.LessonTitle, "Details", new { id = item.LessonID })
+                        @*@Html.DisplayFor(modelItem => item.LessonTitle)*@
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Introduction)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VideoURL)
+                    </td>
+                    <td>
+                        @if (item.PdfFileName == "noFile.jpg")
+                        {
+                            <span>No pdf</span>
+                        }
+                        else
+                        {
+                            <a href="~/Content/textfiles/Lessons/@item.PdfFileName" target="_blank">
+                                @item.PdfFileName.Substring(36)
+                            </a>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsActive)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReservationLimit)
+                    </td>
+
+                    @if (User.Identity.IsAuthenticated)
+                {
+                        <td>
+                            <a href="@Url.Action("Create", "Reservations", new { id = item.LessonID })">Reserve</a>
+                        </td>
+                    }
+
+
+                    @if (User.IsInRole("Admin"))
+                {
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.LessonID }) |
+                            @*@Html.ActionLink("Details", "Details", new { id=item.LessonID }) |*@
+
+                            @if (item.LessonViews.Count == 0 && item.Reservations.Count ==0)
+                            {
+                                @Html.ActionLink("Delete", "Delete", new { id = item.LessonID })
+                            }
+                            else
+                            {
+                                <span class="myWarning">IN USE</span>
+                            }
+
+                        </td>
+                    }
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+        @*@section scripts{
+                <script>
+                    $(document).ready(function () {
+                        $('.table').DataTable();
+                    });
+                </script>
+            }*@

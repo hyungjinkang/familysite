@@ -1,0 +1,49 @@
+﻿@model FamilySite.DATA.EF.UserDetail
+
+@{
+    ViewBag.Title = "Delete Profile Image";
+}
+<div id="family-wrapper">
+<h2>@ViewBag.Title</h2>
+
+<h3>Are you sure you want to delete your profile image?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AvatarImage)
+        </dt>
+
+        <dd>
+            <img src="~/Content/images/Users/t_@Model.AvatarImage" alt="@Model.FirstName" />
+        </dd>
+
+
+        </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete Image only" class="btn btn-primary" />|
+            @Html.ActionLink("Back to List", "Index",null, new { @class = "btn btn-danger" })
+        </div>
+    }
+</div>
+</div>

@@ -1,0 +1,55 @@
+﻿@model FamilySite.DATA.EF.LessonView
+
+@{
+    ViewBag.Title = "Lesson View Details";
+}
+
+<div id="family-wrapper">
+    <div>
+        <h3>@ViewBag.Title</h3>
+        <div id="CourseDetailsContainer">
+
+            <div id="tdHeader">
+                <h3>@Html.DisplayFor(model => model.Lesson.LessonTitle)</h3>
+            </div>
+
+            <div style="text-align:center">
+
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.DateViewed)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.DateViewed)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.UserDetail.FirstName)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.UserDetail.FirstName)
+                    </dd>
+
+                </dl>
+
+            </div>
+
+
+            <div>
+
+                <p style="border-bottom: 3px solid dodgerblue;text-align:center;"> All Lessons Completed in this year</p>
+
+            </div>
+
+            <div id="tdFooter">
+                @if (User.IsInRole("Admin"))
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.LessonViewID }, new { @class = "btn btn-primary" })@:|
+                }
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-danger" })
+            </div>
+        </div>
+    </div>
+</div>

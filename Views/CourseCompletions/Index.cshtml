@@ -1,0 +1,77 @@
+﻿@model IEnumerable<FamilySite.DATA.EF.CourseCompletion>
+
+@{
+    ViewBag.Title = "Course Completion";
+}
+<div id="family-wrapper">
+<h3>@ViewBag.Title</h3>
+
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        @Html.ActionLink("Add New Course Completion", "Create")
+    </p>
+}
+
+@if (User.IsInRole("Admin") || User.IsInRole("Parent"))
+{
+    <div class="buttons">
+        @using (Html.BeginForm("Index", "CourseCompletions", FormMethod.Get))
+        {
+            @Html.DropDownList("filter", null, "Filter by a Member", new { onchange = "this.form.submit();"})
+            @Html.ActionLink("Return To Full List", "Index", "CourseCompletions")
+        }
+
+    </div>
+
+}
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DateCompleted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cours.CourseName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserDetail.FirstName)
+            </th>
+            @if (User.IsInRole("Admin"))
+            {
+                <th></th>
+            }
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.DateCompleted.ToShortDateString(), "Details", new { id = item.CourseCompletionID })
+                    @*@Html.DisplayFor(modelItem => item.DateCompleted)*@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cours.CourseName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserDetail.FirstName)
+                </td>
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.CourseCompletionID }) |
+                        @*@Html.ActionLink("Details", "Details", new { id = item.CourseCompletionID }) |*@
+                        @Html.ActionLink("Delete", "Delete", new { id = item.CourseCompletionID })
+                    </td>
+                }
+
+            </tr>
+        }
+    </tbody>
+</table>
+</div>

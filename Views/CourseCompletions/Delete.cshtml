@@ -1,0 +1,26 @@
+﻿@model FamilySite.DATA.EF.CourseCompletion
+
+@{
+    ViewBag.Title = "Delete Course Completion of " + Model.UserDetail.FirstName;
+}
+<div id="family-wrapper">
+    <h2>@ViewBag.Title</h2>
+
+    <h3 style="display:inline-block">
+        Are you sure you want to delete course completion on
+        <span class="myWarning">@Model.DateCompleted.ToShortDateString()</span>?
+    </h3>
+
+    <div style="display:inline-block">
+
+        @using (Html.BeginForm())
+            {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-primary" />|
+                @Html.ActionLink("No", "Index", null, new { @class = "btn btn-danger" })
+            </div>
+        }
+</div>
+    </div>

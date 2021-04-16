@@ -1,0 +1,83 @@
+﻿@model FamilySite.DATA.EF.Lesson
+
+@{
+    ViewBag.Title = Model.LessonTitle + " Details";
+}
+<div id="family-wrapper">
+    <div id="CourseDetailsContainer">
+
+        <div id="tdHeader">
+            <h3>@Html.DisplayFor(model => model.LessonTitle)</h3>
+        </div>
+        <div>
+            <p>
+                @Html.LabelFor(model => model.VideoURL)
+                @Html.DisplayFor(model => model.VideoURL)
+                @if (Model.VideoURL != null)
+                {
+                    <div class="responsive">
+
+                    <iframe id="youtube" width="789" height="444" src="https://youtube.com/embed/@Model.VideoURL" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                }
+
+            </p>
+
+        </div>
+
+        <div id="clearfix"></div>
+        <div id="tdLeft">
+
+            <p>
+                @Html.LabelFor(model => model.PdfFileName) : 
+                @if (Model.PdfFileName == "noFile.jpg")
+            {
+                    <span>No pdf</span>
+                }
+                else
+                {
+                    <a href="~/Content/textfiles/Lessons/@Model.PdfFileName" target="_blank">
+                        @Model.PdfFileName.Substring(30)
+                    </a>
+                }
+            </p> <!--pdf file-->
+
+            <p>
+                @Html.LabelFor(model => model.IsActive) &emsp; &emsp;
+                @Html.DisplayFor(model => model.IsActive)
+            </p>
+            <p>
+                @Html.LabelFor(model => model.ReservationLimit):
+                @Html.DisplayFor(model => model.ReservationLimit)
+            </p>
+            <p>
+                @Html.LabelFor(model => model.Cours.CourseName):
+                @Html.DisplayFor(model => model.Cours.CourseName)
+            </p>
+        </div>
+
+
+        <div id="tdRight">
+
+            <p>
+                @Html.LabelFor(model => model.Introduction):
+                @Html.DisplayFor(model => model.Introduction)
+            </p>
+           
+        </div>
+     
+
+    <div class="clearfix"></div>
+
+    <div id="tdFooter">
+        <div>
+            @if (User.IsInRole("Admin"))
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = Model.LessonID }, new { @class = "btn btn-primary" })@:|
+            }
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-danger" })
+        </div>
+
+    </div>
+</div>
+</div>

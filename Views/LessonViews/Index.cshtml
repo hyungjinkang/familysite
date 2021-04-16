@@ -1,0 +1,69 @@
+﻿@model IEnumerable<FamilySite.DATA.EF.LessonView>
+
+@{
+    ViewBag.Title = "Lesson View";
+}
+<div id="family-wrapper">
+    <h3>@ViewBag.Title</h3>
+
+    @if (User.IsInRole("Admin"))
+    {
+        <p>
+            @Html.ActionLink("Create New Lesson View", "Create")
+        </p>
+    }
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateViewed)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Lesson.Cours.CourseName)
+
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Lesson.LessonTitle)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserDetail.FirstName)
+                </th>
+
+                @if (User.IsInRole("Admin"))
+            {
+                    <th></th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(item.DateViewed.ToShortDateString(), "Details", new { id = item.LessonViewID })
+                        @*@Html.DisplayFor(modelItem => item.DateViewed)*@
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Lesson.Cours.CourseName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Lesson.LessonTitle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserDetail.FirstName)
+                    </td>
+                    @if (User.IsInRole("Admin"))
+                {
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.LessonViewID }) |
+                            @*@Html.ActionLink("Details", "Details", new { id = item.LessonViewID }) |*@
+                            @Html.ActionLink("Delete", "Delete", new { id = item.LessonViewID })
+                        </td>
+                    }
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

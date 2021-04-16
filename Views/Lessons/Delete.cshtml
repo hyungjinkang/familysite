@@ -1,0 +1,23 @@
+﻿@model FamilySite.DATA.EF.Lesson
+
+@{
+    ViewBag.Title = "Delete " + Model.LessonTitle;
+}
+<div id="family-wrapper">
+    <h2>@ViewBag.Title</h2>
+    <hr />
+
+    <h3 style="display:inline-block">Are you sure you want to delete <span class="myWarning">@Model.LessonTitle</span>?</h3>
+    <div style="display:inline-block">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color" style="display:inline-block">
+                <input type="submit" value="Yes" class="btn btn-primary" />|
+                @Html.ActionLink("No", "Index", null, new { @class = "btn btn-danger" })
+            </div>
+        }
+    </div>
+</div>

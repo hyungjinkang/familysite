@@ -1,0 +1,65 @@
+﻿@model FamilySite.DATA.EF.LessonView
+
+@{
+    ViewBag.Title = "Edit Lesson View on " + Model.DateViewed.ToShortDateString();
+}
+<div id="family-wrapper">
+    <h3>@ViewBag.Title</h3>
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.LessonViewID)
+        <div id="CourseDetailsContainer">
+
+            <div class="form-horizontal">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UserID, "User", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-9">
+                        @Html.DropDownList("UserID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.UserID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LessonID, "Lesson", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-9">
+                        @Html.DropDownList("LessonID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.LessonID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DateViewed, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.DateViewed, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DateViewed, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div id="tdFooter">
+                <p>
+                    <input type="submit" value="Save" class="btn btn-primary" />|
+
+                    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger" })
+                </p>
+            </div>
+        </div>
+
+
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

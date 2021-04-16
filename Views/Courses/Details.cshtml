@@ -1,0 +1,60 @@
+﻿@model FamilySite.DATA.EF.Course
+
+@{
+    ViewBag.Title = Model.CourseName + " Details";
+}
+<div id="family-wrapper">
+    <div id="CourseDetailsContainer">
+        <div id="tdHeader">
+            <h3>@Html.DisplayFor(model => model.CourseName)</h3>
+         </div>
+
+        <div id="tdLeft">
+            <p>
+
+                <img src="~/Content/images/Courses/course.jpg" alt="@Model.CourseName" />
+                @* TODO: file upload and name it same as the courseName with extension. *@
+
+            </p>
+        </div>
+
+        <div id="tdRight">
+
+            <p>
+                @Html.LabelFor(model => model.Description)
+                @Html.DisplayFor(model => model.Description)
+            </p>
+
+            <p>
+                @Html.LabelFor(model => model.IsActive) &emsp; &emsp;
+                @Html.DisplayFor(model => model.IsActive)
+            </p>
+
+            <p style="font-weight: 700">
+                Lessons
+            </p>
+            <p>
+                <ul>
+                    @foreach (var l in ViewBag.courseLessons)
+                    {
+                        <li>
+                            <a href="@Url.Action("Details", "Lessons", new { id = l.LessonID })">@l.LessonTitle</a>
+                        </li>
+                    }
+                </ul>
+            </p>
+
+        </div>
+
+        <div class="clearfix"></div>
+        <div id="tdFooter">
+
+            @if (User.IsInRole("Admin"))
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = Model.CourseID }, new { @class = "btn btn-primary" })@:|
+            }
+            @Html.ActionLink("Back to List", "Index",null, new { @class = "btn btn-danger" })
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>

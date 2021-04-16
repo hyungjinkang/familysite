@@ -1,0 +1,209 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+
+@model FamilySite.DATA.EF.Lesson
+
+<div class="container-wrap">
+    <aside id="fh5co-hero">
+        <div class="flexslider">
+            <ul class="slides">
+                <li style="background-image: url(../../Content/images/img_bg_1_1.jpg);">
+                    <div class="overlay-gradient"></div>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3 col-md-pull-3 slider-text">
+                                <div class="slider-text-inner">
+                                    <h1 style="font-weight:700">Family Learnig Site</h1>
+                              
+                                    <p><a class="btn btn-primary btn-demo" href=@Url.Action("Index","Courses")>Courses</a> <a class="btn btn-primary btn-learn" href=@Url.Action("Index","Lessons")>Lessons</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li style="background-image: url(../../Content/images/img_bg_2_1.jpg);">
+                    <div class="overlay-gradient"></div>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3 col-md-push-3 slider-text">
+                                <div class="slider-text-inner">
+                                    <h1>My Page </h1>
+                             
+                                    <p><a class="btn btn-primary btn-demo" href=@Url.Action("Index","CourseCompletions")>My Completed Courses</a> <a class="btn btn-primary btn-learn" href=@Url.Action("Index","Reservations")>Reservations</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li style="background-image: url(../../Content/images/img_bg_3_1.jpg);">
+                    <div class="overlay-gradient"></div>
+                    <div class="container-fluids">
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3 slider-text">
+                                <div class="slider-text-inner text-center">
+                                    <h1>Members</h1>
+
+                                    <p><a class="btn btn-primary btn-demo" href=@Url.Action("Index","UserDetails")>Members</a> <a class="btn btn-primary btn-learn" href=@Url.Action("Contact","Home")>Contact</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li style="background-image: url(../../Content/images/img_bg_4_1.jpg);">
+                    <div class="overlay-gradient"></div>
+                    <div class="container-fluid">
+                        @*<div class="row">
+                            <div class="col-md-6 col-md-offset-3 col-md-push-3 slider-text">
+                                <div class="slider-text-inner">
+                                    <h1>I Love to Tell My Story</h1>
+                                    <h2>Free html5 templates Made by <a href="http://freehtml5.co/" target="_blank">freehtml5.co</a></h2>
+                                    <p><a class="btn btn-primary btn-demo" href="#"></i> View Demo</a> <a class="btn btn-primary btn-learn">Learn More</a></p>
+                                </div>
+                            </div>
+                        </div>*@
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <div id="fh5co-work" class="fh5co-light-grey">
+        <div class="row animate-box">
+            <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
+                <h2 style="font-size:1.7em;">Popular Lessons</h2>
+                <p style="font-size: 1.5em; font-weight:400;">Here are fun and great lessons for family members!</p>
+            </div>
+        </div>
+
+      
+        <div class="row">
+            <div class="col-md-4 text-center animate-box">
+                <a href="@Url.Action("Details", "Lessons", new { @id = ViewBag.lessonNo1 })" class="work" style="background-image: url(../../Content/images/Lessons/diamond.jpg);"> <!-- 3-->
+                    <div class="desc">
+                        <h3>Most Popular</h3>
+                        <span>Amazing</span>
+                    </div>
+                </a>
+
+            </div>
+            <div class="col-md-4 text-center animate-box">
+                <a href="@Url.Action("Details", "Lessons", new { @id = ViewBag.lessonNo2 })" class="work" style="background-image: url(../../Content/images/Lessons/gold.jpg);"> <!-- 15-->
+                    <div class="desc">
+                        <h3>2nd Popular</h3>
+                        <span>Very Good</span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 text-center animate-box">
+                <a href="@Url.Action("Details", "Lessons", new { @id = ViewBag.lessonNo3 })" class="work" style="background-image: url(../../Content/images/Lessons/flowers.jpg);"> <!-- 12 -->
+                    <div class="desc">
+                        <h3>3rd Popular</h3>
+                        <span>Enjoyable</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+    </div>
+
+    <div id="fh5co-counter" class="fh5co-counters">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 text-center animate-box">
+                <p style="font-size: 1.5em; font-weight:400;">Here are number of Courses, Lessons, Courses completed, Lesson Viewed!</p>
+            </div>
+        </div>
+        <div class="row animate-box">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="row">
+                    <div class="col-md-3 text-center">
+                        <span class="glyphicon glyphicon-file"></span>
+                        <span class="fh5co-counter js-counter" data-from="0" data-to="@ViewBag.coursesNo" data-speed="1000" data-refresh-interval="50"></span>
+                        <span class="fh5co-counter-label">COURSES</span>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <span class="glyphicon glyphicon-floppy-disk"></span>
+                        <span class="fh5co-counter js-counter" data-from="0" data-to="@ViewBag.lessonsNo" data-speed="1000" data-refresh-interval="50"></span>
+                        <span class="fh5co-counter-label">LESSONS</span>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="fh5co-counter js-counter" data-from="0" data-to="@ViewBag.courseCompletionsNo" data-speed="1000" data-refresh-interval="50"></span>
+                        <span class="fh5co-counter-label">COURSE COMPLETIONS</span>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <span class="glyphicon glyphicon-ok"></span>
+                        <span class="fh5co-counter js-counter" data-from="0" data-to="@ViewBag.lessonViewsNo" data-speed="1000" data-refresh-interval="50"></span>
+                        <span class="fh5co-counter-label">LESSON COMPLETIONS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+@if (ViewBag.currentUser != null)
+{
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 text-center">
+               
+                    <p style="font-size: 1.2em; font-weight:400; border:2px solid red;padding:5px 0px">You completed @ViewBag.CourseCompletionsNo Courses. 
+                     <br /> Requirement: 6 courses per a year.</p>
+               
+            </div>
+        </div>
+
+}
+
+    </div>
+
+
+<!-- hide: expand the function later
+   @*<div id="fh5co-blog" class="blog-flex">
+        <div class="featured-blog" style="background-image: url(../../Content/images/blog-1.jpg);">
+            <div class="desc-t">
+                <div class="desc-tc">
+                    <span class="featured-head">Featured Posts</span>
+                    <h3><a href="#">Top 20 Best WordPress Themes 2017 Multi Purpose and Creative Websites</a></h3>
+                    <span><a href="#" class="read-button">Learn More</a></span>
+                </div>
+            </div>
+        </div>
+        <div class="blog-entry fh5co-light-grey">
+            <div class="row animate-box">
+                <div class="col-md-12">
+                    <h2>Latest Posts</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 animate-box">
+                    <a href="#" class="blog-post">
+                        <span class="img" style="background-image: url(../../Content/images/blog-2.jpg);"></span>
+                        <div class="desc">
+                            <h3>26 Best Education WordPress Themes 2017 You Need To See</h3>
+                            <span class="cat">Collection</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-12 animate-box">
+                    <a href="#" class="blog-post">
+                        <span class="img" style="background-image: url(../../Content/images/blog-1.jpg);"></span>
+                        <div class="desc">
+                            <h3>16 Outstanding Photography WordPress Themes You Must See</h3>
+                            <span class="cat">Collection</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-12 animate-box">
+                    <a href="#" class="blog-post">
+                        <span class="img" style="background-image: url(../../Content/images/blog-3.jpg);"></span>
+                        <div class="desc">
+                            <h3>16 Outstanding Photography WordPress Themes You Must See</h3>
+                            <span class="cat">Collection</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>*@ 
+-->
+</div><!-- END container-wrap -->

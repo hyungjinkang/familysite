@@ -1,0 +1,52 @@
+﻿@model FamilySite.DATA.EF.Reservation
+
+@{
+    ViewBag.Title = "Delete Reservaton";
+}
+<div id="family-wrapper">
+<h2>@ViewBag.Title</h2>
+<hr />
+<div id="CourseDetailsContainer" style="width: 70%">
+<h3>Are you sure you want to delete this?</h3>
+<div>
+
+    <dl class="dl-horizontal" style="padding-left: 30%">
+        <dt>
+            @Html.DisplayNameFor(model => model.ReservationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReservationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserDetail.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserDetail.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lesson.LessonTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lesson.LessonTitle)
+        </dd>
+
+    </dl>
+
+    </div>
+    <div id="tdFooter">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+            <input type="submit" value="Delete" class="btn btn-primary" />@:|
+            @Html.ActionLink("No", "Index", null, new { @class = "btn btn-danger" })
+
+    }
+</div>
+</div>
+</div>

@@ -1,0 +1,80 @@
+﻿@model IEnumerable<FamilySite.DATA.EF.UserDetail>
+
+@{
+    ViewBag.Title = "Member Info";
+}
+<div id="family-wrapper">
+<h3>@ViewBag.Title</h3>
+
+@if (User.Identity.IsAuthenticated)
+{
+ 
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AvatarImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AspNetUser.Email)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="~/Content/images/Users/t_@item.AvatarImage" alt="@item.FirstName" />
+                </td>
+                <td>
+                    @Html.ActionLink(item.FirstName, "Details", new { id = item.UserID })
+                    @*@Html.DisplayFor(modelItem => item.FirstName)*@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                </td>
+
+               
+                <td>
+                    @if (item.UserID == (ViewBag.currentUser) || User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { id = item.UserID }) @:|
+                        @Html.ActionLink("Delete Image", "Delete", new { id = item.UserID })
+                    }
+                    else
+                    {
+                        <span class="myWarning">Other Member</span>
+                    }
+
+                </td>
+                
+                
+            </tr>
+        }
+    </tbody>
+</table>
+}
+else
+{
+  <div class="col-md-6">
+      <h3>@ViewBag.anonymousUser</h3>
+      <ul>
+          <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+          <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+      </ul>
+      
+  </div>
+}
+</div>
