@@ -9,3 +9,5 @@ Parents as a supervisor role can read all courses and track learning results and
 get emails when their children finish courses.  
 Children can read lessons and see their learning results. 
 Children can reserve lessons like driving training lessons. 
+
+The files are parts of the projects.
