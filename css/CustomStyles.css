@@ -1,0 +1,168 @@
+﻿/*This is the stylesheet used to format individual views and to override
+    any styling from bootstrap, the main.css, or any other stylings.  The link
+    to this sheet should be last in the list of stylesheets in the _layout.cshtml
+*/
+
+/*Global Style Settings*/
+
+/*used for Bold, Italicized Red text (in use/Delete statements)*/
+
+
+.myWarning
+{
+    color: red;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.container-wrap > h2
+    {
+        font-size: 1.5em;
+        color: #23527C;
+        text-align: center;
+        margin: 0.5em;
+        padding-top: 0.5em;
+
+    }
+
+.buttons
+{
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+	.buttons a
+	{
+		font-size: 1.25em;
+	}
+
+.buttons select
+{
+	border-radius: .25em;
+	padding: .25em;
+	font-size: 1.25em;
+	margin-right: 3em;
+}
+
+.buttons form
+{
+	text-align: center;
+	border: solid 2px dodgerblue;
+	padding: 1em;
+	width: 50%;
+	margin: 2em auto;
+	border-radius: 1em;
+}
+
+/*hjkang added to give padding to the tables. This class is generated javascript for tables*/
+#family-wrapper {
+    padding: 2em 2em;
+    clear: both;
+    background-color:rgba(176, 238, 12, 0.2)
+}
+#family-wrapper h2, h3, h4 {
+    text-align:center;
+}
+
+#footer {
+    background-image:url(../images/wood.jpg);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color:#404442;
+}
+
+#family-wrapper
+{
+    width: 100%;
+    margin: auto;
+    min-height: 550px;
+    /*this fits the wide screen, you will need a media query for other
+    screen sizes.  With small content, the object is to get the footer to the
+    bottom of the view (in the browser) without the broswer generating a sidebar scroll.
+    */
+}
+
+/*tiled display of details, create, edit*/
+#CourseDetailsContainer {
+    width: 82%;
+    border: 2px solid black;
+    padding: 1em;
+    margin: auto;/*only works once we specify width*/
+    margin-bottom: 3em;
+    box-shadow: 2em 2em gray;
+    background-color:#ffffff;
+}
+    #CourseDetailsContainer label{
+        font-weight: 700;
+    }
+
+#tdHeader h3 {
+    font-size: 1.5em;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1em;
+    border-bottom: 3px solid dodgerblue;
+}
+
+#tdLeft {
+    width: 37%;
+    float: left;
+    margin-bottom: 1em;
+}
+
+#tdLeft p {
+    line-height: 1.5em;
+}
+#tdLeft img {
+    width: 96%
+}
+
+#tdRight {
+    margin-left: 40%;
+}
+
+#tdRight p {
+    line-height: 2em;
+}
+
+#tdFooter {
+    text-align:center;
+}
+
+#tdFooterLeft
+{
+    width: 49%;
+    float: left;
+}
+
+#tdFooterRight
+{
+    margin-left: 50%;
+    text-align: right;
+
+}
+
+textarea.form-control {
+    min-height: 300px;
+    width:100%;
+}
+
+iframe {
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+
+}
+
+.glyphicon {
+    font-size:2em;
+    color:rgba(19, 77, 196, 0.70)
+}
+
+.centerBlock-detail {
+  display: block;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20%;
+}
